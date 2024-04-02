@@ -5,12 +5,16 @@ def main():
     sequence = generate_cointoss(n)
     aliceScore, bobScore = calculate_scores(sequence)
     print(sequence)
-    print("Alice scored " + str(aliceScore) + " & Bob scored " + str(bobScore))
+    print("Alice scored " + str(aliceScore/n) + " & Bob scored " + str(bobScore/n))
+    if aliceScore > bobScore:
+        print("Alice is the Winner")
+    elif bobScore > aliceScore:
+        print("Bob is the Winner")
 
 def generate_cointoss(n):
     sequence = ""
     for i in range(n):
-        if (random.randint(0,1) < 0.5):
+        if (random.choice(["H", "T"]) == "H"):
             sequence += "H"
         else:
             sequence += "T"
