@@ -4,7 +4,6 @@ def simulate_game(n):
     """Simulate a single game and return the winner"""
     alice_score, bob_score = 0, 0
     previous_toss = random.choice(["H", "T"])
-    # Start from second toss because the first toss does not contribute to scores
     for _ in range(n-1):
         current_toss = random.choice(["H", "T"])
         if previous_toss == "H":
@@ -29,10 +28,14 @@ def simulate_probability(n, simulations=100000):
         results[result] += 1
 
     for key in results:
-        results[key] /= simulations
+        results[key] = results[key] / simulations
     return results
 
-# Calculate probabilities for specified values of n
-for n in [2, 3, 4, 5, 1024]:
-    probability = simulate_probability(n, simulations=100000)
-    print(f"Probabilities for n={n}: {probability}")
+def main():
+    n_values = [2, 3, 4, 5, 1024]
+    for n in n_values:
+        probability = simulate_probability(n)
+        print(f"Probabilities for n={n}: {probability}")
+
+if __name__ == "__main__":
+    main()
